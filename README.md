@@ -17,7 +17,7 @@
 好きな曲の感想や思い出を共有したいとき、興味があるアーティストの人気曲を調べたいとき
 
 ## 設計書
-[テーブル定義書]https://docs.google.com/spreadsheets/d/1tydxM-rBxIaSPkTL9JN9cTqcOo-1LmrLLd4E3mm9lOw/edit?usp=sharing
+[テーブル定義書](https://docs.google.com/spreadsheets/d/1tydxM-rBxIaSPkTL9JN9cTqcOo-1LmrLLd4E3mm9lOw/edit?usp=sharing)
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/15E_1Lq8NK8rgDcSTH7VeomxaSEGBQ5eGjs2NlosB6dQ/edit?usp=sharing
