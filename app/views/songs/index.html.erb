@@ -1,0 +1,35 @@
+<div class="row">
+	<!--レイアウト用-->
+	<div class="col-sm-2"></div>
+	<!--レイアウト用-->
+	
+	<div class="col-sm-8">
+		<% @songs.each do |song| %>
+			<%= link_to song_path(song.id) do %>
+				<div class="card">
+					<div class="card-img-top">
+						<%= attachment_image_tag song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "100x60" %>
+					</div>
+					<div class="card-body">
+						<h3 class="card-title">
+							<span>♪</span> <%= song.title %>
+						</h3>
+						<div class="card-title">
+							アーティスト：<%= song.artist_name %>
+						</div>
+						<div class="card-text">
+							<%= song.body %>
+						</div>
+						<div class="card-footer">
+							<%= song.user.name %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+
+	<!--レイアウト用-->
+	<div class="col-sm-2"></div>
+	<!--レイアウト用-->
+</div>	

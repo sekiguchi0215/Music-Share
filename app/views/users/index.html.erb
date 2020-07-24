@@ -1,0 +1,28 @@
+<div class="row">
+	<!--レイアウト用-->
+	<div class="col-sm-2"></div>
+	<!--レイアウト用-->
+
+	<div class="col-sm-8">
+		<% @users.each do |user| %>
+			<div class="card">
+				<div class="card-img-top">
+					<%= attachment_image_tag user, :profile_image_id, :fill, 50, 50, fallback: "no_image_user.png", size: "80x80" %>
+				</div>
+				<div class="card-title">
+					<%= user.name %>
+				</div>
+				<div class="card-text">
+					<%= user.introduction %>
+				</div>
+				<div class="card-footer">
+					<%=  %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+	<!--レイアウト用-->
+	<div class="col-sm-2"></div>
+	<!--レイアウト用-->
+</div>
