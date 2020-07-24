@@ -1,26 +1,26 @@
-# README
+# MusicShare
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+好きな曲の感想や思い出を共有するサイト
 
-Things you may want to cover:
+### サイトテーマ
+音楽が身近にある現代、音楽を聴いて終わりではもったいない。
+曲を聴いて感じた思いを共有して、ユーザー同士での交流を通して音楽を更に好きになり、日常を楽しくする。
 
-* Ruby version
+### テーマを選んだ理由
+普段から曲を聴いていて、感想をtwitterなどに書くことはできるが、曲の感想に特化したSNSが盛んではないと感じたため。
 
-* System dependencies
+### ターゲットユーザ
+音楽が好きな人、音楽が好きな人と交流したい人
 
-* Configuration
+### 主な利用シーン
+好きな曲の感想や思い出を共有したいとき、興味があるアーティストの人気曲を調べたいとき
 
-* Database creation
+## 設計書
+[テーブル定義書](https://docs.google.com/spreadsheets/d/1tydxM-rBxIaSPkTL9JN9cTqcOo-1LmrLLd4E3mm9lOw/edit?usp=sharing)
 
-* Database initialization
+### 機能一覧
+https://docs.google.com/spreadsheets/d/15E_1Lq8NK8rgDcSTH7VeomxaSEGBQ5eGjs2NlosB6dQ/edit?usp=sharing
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-<div>Logo created by <a href="https://www.designevo.com/logo-maker/" title="Free Online Logo Maker">DesignEvo logo maker</a></div>
+### ロゴ作成に使用したサイト
+https://www.designevo.com/logo-maker/
