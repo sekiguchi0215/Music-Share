@@ -1,10 +1,10 @@
 <div class="row">
 	<!--レイアウト用-->
-	<div class="col-sm-4"></div>
+	<div class="col-3"></div>
 	<!--レイアウト用-->
 
 	<!--投稿詳細-->
-	<div class="col-sm-4">
+	<div class="col-9">
 		<div class="card">
 			<div class="card-img-top">
 				<%= attachment_image_tag @song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "200x120" %>
@@ -20,15 +20,59 @@
 					<%= @song.body %>
 				</div>
 				<div class="card-footer">
-						<%= @song.user.name %>
+					<%= @song.user.name %>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 	<!--投稿詳細-->
-	
-	<!--レイアウト用-->
-	<div class="col-sm-4"></div>
-	<!--レイアウト用-->
 </div>
+
+<div class="row">
+	<!--コメント機能-->
+	<div class="col-3"></div>
+	<div class="col-9">
+		<div class="comment-list">
+			<table class="table">
+				<tbody>
+					<% @comments.each do |comment| %>
+					<tr>
+						<td>
+							<%= link_to comment.user do %>
+								<%= attachment_image_tag comment.user, :profile_image_id, :fill, 50, 50, fallback: "no_image_song.jpg", size: "50x50" %>
+								<%= comment.user.name %>
+							<% end %>
+						</td>
+						<td>
+							<%= comment.comment %>
+						</td>
+
+						<% if comment.user == current_user %>
+						<td>
+							<%= link_to "削除", song_comment_path(comment.song, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+						</td>
+						<% end %>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div class="comment-form">
+			<%= form_for [@song, @comment] do |f| %>
+				<%= f.text_area :comment %>
+				<%= f.submit "送信" %>
+			<% end %>
+		</div>
+	</div>
+	<!--コメント機能-->
+</div>
+
+
+
+
+
+
+
+
+
+
