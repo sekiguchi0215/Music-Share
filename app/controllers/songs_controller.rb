@@ -33,8 +33,8 @@ class SongsController < ApplicationController
 
 	def update
 		@song = Song.find(params[:id])
-		if @song.update(song_params)
-			redirect_to songs_path(@song.id), notice: "編集を保存しました。"
+		@song.update(song_params)
+		redirect_to song_path(@song.id), notice: "編集を保存しました。"
 	end
 
 	def destroy

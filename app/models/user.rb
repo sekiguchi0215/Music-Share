@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :songs, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  # has_many :favorited_songs, through: :favorites, source: :song 
 end
