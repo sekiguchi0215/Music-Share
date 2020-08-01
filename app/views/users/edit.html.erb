@@ -1,1 +1,31 @@
-edit.html.erb
+<div class="row">
+	<!--<%=  %>-->
+	<% if @user.errors.any? %>
+		<h2><%= @user.errors.count %></h2>
+		<ul>
+			<% @user.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<div class="form-body">
+		<%= form_for(@user) do |f| %>
+			<div class="field">
+				<%= f.label :"アイコン" %>
+				<!--<%= f.attachment_field :profile_image %>-->
+			</div>
+			<div class="field">
+				<%= f.label :"名前" %>
+				<%= f.text_field :name  %>
+			</div>
+			<div class="field">
+				<%= f.label :"プロフィール" %>
+				<%= f.text_area :introduction %>
+			</div>
+			<div class="actions">
+				<%= f.submit "変更を保存する" %>
+			</div>
+		<% end %>
+	</div>
+</div>

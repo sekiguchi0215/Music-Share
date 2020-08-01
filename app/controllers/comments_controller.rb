@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+	before_action :authenticate_user!
 
 	def create
 		song = Song.find(params[:song_id])

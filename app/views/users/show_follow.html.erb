@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="col-lg-3">
+		<%= render "sidebar", user: current_user %>
+	</div>
+
+	<div class="col-lg-9">
+		<h3>フォローリスト</h3>
+		<% @user.followings.each do |user| %>
+			<table class="table">
+				<tr>
+					<td width="30%">
+						<%= link_to user_path(user) do  %>
+							<%= attachment_image_tag user, :profile_image_id, :fill, 80, 80, fallback: "no_image_user.png", size: "80x80" %>
+							<%= user.name %>
+						<% end %>
+					</td>
+					<td width="60%">
+						<%= user.introduction %>
+					</td>
+					<td width="10%">
+						<%= render "relationships/follow_button", user: user %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+</div>

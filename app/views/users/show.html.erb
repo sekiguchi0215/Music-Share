@@ -1,1 +1,82 @@
-マイページ
+<div class="row">
+	<!--<%=  %>-->
+	<div class="col-lg-3">
+		<%= render "sidebar", user: current_user %>
+	</div>
+	<div class="col-lg-9">
+		<!--ユーザ情報-->
+		<div class="user-index">
+			<% if @user == current_user %>
+				<h3>マイページ</h3>
+			<% else %>
+				<table>
+					<tr>
+						<td width="20%">
+							<%= attachment_image_tag @user, :profile_image_id, :fill, 150, 150, fallback: "no_image_user.png", size: "150x150" %>
+						</td>
+						<td class="user-profile" width="60%">
+							<h4><%= @user.name %></h4>
+						</td>
+						<td class="user-profile">
+							<%= @user.introduction %>
+						</td>
+						<td class="user-profile" width="">
+							<%= link_to followings_user_path(@user) do %>
+								フォロー：<%= @user.followings.count %>
+							<% end %>
+						</td>
+						<td class="user-profile">
+							<%= link_to followers_user_path(@user) do %>
+								フォロワー：<%= @user.followers.count %>
+							<% end %>
+						</td>
+						<td class="user-profile">
+							<%= link_to "いいね", favorites_user_path(@user) %>
+						</td>
+						<!--フォローボタン-->
+						<td width="20%">
+							<%= render "relationships/follow_button", user: @user %>
+						</td>
+						<!--フォローボタン-->
+					</tr>
+				</table>
+			<% end %>
+		</div>
+		<!--ユーザ情報-->
+
+		<!--ユーザの投稿リスト-->
+		<div class="song-list">
+			<% @songs.each do |song| %>
+				<div class="card">
+					<%= link_to song_path(song.id) do %>
+						<div class="card-imag-top">
+							<%= attachment_image_tag song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "100x60" %>
+						</div>
+						<div class="card-body">
+							<h4 class="card-title">
+								<span class="note">♪</span> <%= song.title %>
+							</h4>
+							<div class="card-title">
+									アーティスト：<%= song.artist_name %>
+								</div>
+								<div class="card-text">
+									<%= song.body %>
+								</div>
+								<div class="card-footer">
+									<div class="favorites">
+										<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" style="font-size: 15px"></span>
+										<%= song.favorites.count %>
+									</div>
+									<div class="comments">
+										<p>コメント数：<%= song.comments.count %></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+		<!--ユーザの投稿リスト-->
+	</div>
+</div>

@@ -1,4 +1,5 @@
 class SongsController < ApplicationController
+	before_action :authenticate_user!
 
 	def index
 		@songs = Song.all
@@ -41,6 +42,10 @@ class SongsController < ApplicationController
 		@song = Song.find(params[:id])
 		@song.destroy
 		redirect_to songs_path, notice: "投稿を削除しました。"
+	end
+
+	def search
+		@songs = Song.search(params[:keyword])
 	end
 
 	private

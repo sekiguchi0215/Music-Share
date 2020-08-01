@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="col-lg-3">
+		<%= render "sidebar", user: current_user %>
+	</div>
+	<!--<%=  %>-->
+	<div class="col-lg-9">
+		<h2>いいねリスト</h2>
+
+		<div class="song-list">
+			<% @user.favorite_songs.each do |song| %>
+				<div class="card">
+					<%= link_to song_path(song.id) do %>
+						<div class="card-imag-top">
+							<%= attachment_image_tag song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "100x60" %>
+						</div>
+						<div class="card-body">
+							<h4 class="card-title">
+								<span class="note">♪</span> <%= song.title %>
+							</h4>
+							<div class="card-title">
+									アーティスト：<%= song.artist_name %>
+								</div>
+								<div class="card-text">
+									<%= song.body %>
+								</div>
+								<div class="card-footer">
+									<div class="favorites">
+										<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" style="font-size: 15px"></span>
+										<%= song.favorites.count %>
+									</div>
+									<div class="comments">
+										<p>コメント数：<%= song.comments.count %></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+		
+	</div>
+</div>

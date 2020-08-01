@@ -6,11 +6,7 @@
 	<!--サイドバー-->
 
 	<div class="col-lg-9">
-		<%= form_with(url: search_users_path, local: true, method: :get, class: "search-form") do |f| %>
-            <%= f.text_field :keyword, placeholder: "ユーザーを検索する", class: "search-input" %>
-            <%= f.submit "検索", class: "search-btn" %>
-        <% end %>
-		<% @users.each do |user| %>
+		<% @user.each do |user| %>
 			<table>
 				<tr>
 					<td width="20%">

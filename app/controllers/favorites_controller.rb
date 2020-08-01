@@ -6,6 +6,8 @@ class FavoritesController < ApplicationController
 		favorite = song.favorites.new(user_id: current_user.id)
 		favorite.save
 		redirect_to request.referer
+		song = Song.find(parmas[:song_id])
+		song.create_notification_favorite!(current_user)
 	end
 
 	def destroy
