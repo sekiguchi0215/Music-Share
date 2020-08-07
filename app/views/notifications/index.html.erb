@@ -1,0 +1,40 @@
+<div class="row">
+
+	<div class="col-lg-3">
+		<%= render "users/sidebar", user: current_user %>
+	</div>
+
+	<div class="col-lg-9">
+		<h2 class="notifications-list">通知一覧</h2>
+		<% if @notifications.exists? %>
+			<% @notifications.each do |notification| %>	
+				<table class="table">
+					<tr>
+						<td>
+							<%= link_to user_path(notification.visitor_id) do %>
+								<strong><%= notification.visitor.name %></strong>
+							<% end %>さんが
+							<% case notification.action %>
+								<% when "follow" then %>
+									あなたをフォローしました。
+								<% when "favorite" then %>
+									あなたの投稿（<strong> <%= link_to "#{notification.song.title}", notification.song %> </strong>）にいいねしました。
+								<% when "comment" then %>
+									<% if notification.song.user.id == notification.visited.id %>
+										あなたの投稿（<strong> <%= link_to "#{notification.song.title}", notification.song %> </strong>）
+										にコメントしました。
+									<% else %>
+										<strong><%= link_to "#{notification.song.user.name}", user_path(notification.visitor_id) %></strong>さん
+										の投稿（<strong> <%= link_to "#{notification.song.title}", song_path(notification.song) %> </strong>）
+										にコメントしました。
+									<% end %>
+							<% end %>
+						</td>
+					</tr>
+				</table>
+			<% end %>	
+		<% else %>
+			<p>通知はありません。</p>
+		<% end %>
+	</div>
+</div>

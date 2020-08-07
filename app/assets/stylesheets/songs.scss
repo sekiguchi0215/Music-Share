@@ -7,5 +7,101 @@
 }
 
 .note {
-	font-size: 30px;
+	font-size: 30px; 
 }
+
+
+// 新規投稿 投稿編集
+
+.song-container {
+	padding-left: 30px;
+	padding-top: 20px;
+}
+
+.song-field {
+	padding-bottom: 20px;
+}
+
+.field-title {
+	display: block;
+}
+
+.field-class {
+	width: 500px;
+	height: 33px;
+	border-radius: 3px;
+	padding-left: 15px;
+}
+
+.area-class {
+	width: 500px;
+	height: 100px;
+	border-radius: 5px;
+}
+
+.field {
+	marign-left: 15px;
+}
+
+
+// 投稿一覧ページ
+
+.song-index-head {
+	margin-bottom: 25px;
+}
+
+.card-img-top {
+	margin: 10px auto;
+}
+
+
+
+// 投稿詳細ページ  コメント欄
+
+.comment-list {
+	padding-top: 50px;
+}
+
+.comment-title {
+	padding-bottom: 20px;
+}
+
+.text-area {
+	width: 500px;
+	height: 100px;
+	margin-top: 30px;
+	border-radius: 5px;
+}
+
+// 投稿詳細ページ
+
+.card {
+	border: 1px solid;
+	border-radius: 3px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

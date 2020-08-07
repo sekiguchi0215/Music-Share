@@ -3,6 +3,6 @@ class Notification < ApplicationRecord
 	belongs_to :song, optional: true
 	belongs_to :comment, optional: true
 
-	belongs_to :visitor, class_name: "User", forign_key: "visitor_id", optional: true
-	belongs_to :visited, class_name: "User", forign_key: "visited_id", optional: true
+	belongs_to :visitor, class_name: "User", optional: true
+	belongs_to :visited, class_name: "User", optional: true
 end

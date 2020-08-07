@@ -17,6 +17,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap"; 
 
+
+body {
+    font-family: 'ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN','メイリオ', Meiryo;
+}
+
+
 .glyphicon {
     position: relative;
     top: 1px;
@@ -27,20 +33,65 @@
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}          
+}  
+
+.row {
+    padding-bottom: 50px;
+}        
+
+
+// 見出し
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
 
 
 // ヘッダー
+
+.navbar {
+    height: 100px;
+}
 
 li {
 	list-style: none;
 	float: left;
 }
 
-// ヘッダー
+.nav-item {
+    padding-right: 25px;
+    font-size: 17px;
+    line-height: 100px;
+}
 
 
+// 背景 
 
+.body {
+    background-image: image-url("notes-leaf.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.mask {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+// フッター
+
+footer {
+    height: 100px;
+    width: 100%;
+}
+
+.copyright {
+    font-size: 20px;
+    line-height: 150px;
+    padding-left: 1600px;
+}
 
 
 

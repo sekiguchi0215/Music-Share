@@ -1,92 +1,88 @@
 <div class="row">
 	<!--レイアウト用-->
-	<div class="col-3"></div>
+	<div class="col-lg-3">
+		<%= render "users/sidebar", user: current_user %>
+	</div>
 	<!--レイアウト用-->
 
 	<!--投稿詳細-->
-	<div class="col-9">
+	<div class="col-lg-9 card-list">
 		<div class="card">
 			<div class="card-img-top">
 				<%= attachment_image_tag @song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "200x120" %>
 			</div>
 			<div class="card-body">
-				<h3 class="card-title">
-					<span>♪</span> <%= @song.title %>
-				</h3>
-				<div class="card-title">
-					アーティスト名：<%= @song.artist_name %>
+				<h2 class="card-title">
+					<span style="font-size: 40px">♪ </span> <%= @song.title %>
+					<% if @song.user.id == current_user.id %>
+						<%= link_to "編集する", edit_song_path(@song.id), class: "btn btn-success" %>
+					<% end %>
+				</h2>
+				<div class="card-subtitle">
+					<strong>アーティスト名</strong>：<%= @song.artist_name %>
 				</div>
 				<div class="card-text">
-					<%= @song.body %>
+					<strong>本文</strong>：<%= @song.body %>
 				</div>
 				<div class="card-footer">
-					<%= @song.user.name %>
 
-					<%=  %>
+					<strong>投稿者</strong>：<%= link_to "#{@song.user.name}", user_path(@song.user.id) %>
 
 					<!--いいね機能-->
-					<% if @song.favorited_by?(current_user) %>
-						<%= link_to song_favorite_path(@song), method: :delete do %>
-							<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" style="font-size: 15px"></span>
-							<%= @song.favorites.count %>
-						<% end %>
-					<% else %>
-						<%= link_to song_favorites_path(@song), method: :post do %>
-							<span class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 15px"></span>
-							<%= @song.favorites.count %>
-						<% end %>
-					<% end %>
-					<!--いいね機能-->
+					<div id="song_<%= @song.id%>">
+						<%= render "favorites/favorite_button", song: @song %>
+					</div>
+					
 				</div>
 			</div>
 		</div>
-	</div>
-	<!--投稿詳細-->
-</div>
-
-<div class="row">
-	<!--コメント機能-->
-	<div class="col-3"></div>
-	<div class="col-9">
+		<!--投稿詳細-->
+		<!--コメント機能-->
 		<div class="comment-list">
-			<table class="table">
-				<tbody>
-					<% @comments.each do |comment| %>
-					<tr>
-						<td>
-							<%= link_to comment.user do %>
-								<%= attachment_image_tag comment.user, :profile_image_id, :fill, 50, 50, fallback: "no_image_song.jpg", size: "50x50" %>
-								<%= comment.user.name %>
-							<% end %>
-						</td>
-						<td>
-							<%= comment.comment %>
-						</td>
+			<h4 class="comment-title">コメント一覧</h4>
+			<% if @comments.exists? %>
+				<table class="table">
+					<tbody>
+						<% @comments.each do |comment| %>
+							<tr>
+								<td width="30%">
+									<%= link_to comment.user do %>
+										<%= attachment_image_tag comment.user, :profile_image_id, :fill, 50, 50, fallback: "no_image_song.jpg", size: "50x50" %>
+										<%= comment.user.name %>
+									<% end %>
+								</td>
+								<td width="60%">
+									<%= comment.comment %>
+								</td>
 
-						<% if comment.user == current_user %>
-						<td>
-							<%= link_to "削除", song_comment_path(comment.song, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-						</td>
+								<% if comment.user == current_user %>
+									<td width="10%">
+										<%= link_to "削除", song_comment_path(comment.song, comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
+									</td>
+								<% end %>
+							</tr>
 						<% end %>
-					</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>
-		<div class="comment-form">
-			<%= form_for [@song, @comment] do |f| %>
-				<%= f.text_area :comment %>
-				<%= f.submit "送信" %>
+					</tbody>
+				</table>
+			<% else %>
+				<p>まだコメントはありません。</p>
 			<% end %>
+			
+			<div class="comment-container">
+				<%= form_for [@song, @comment] do |f| %>
+					<div class="comment-form">
+						<%= f.text_area :comment, class: "text-area" %>
+					</div>
+					<div class="comment-form comment-btn">
+						<%= f.submit "送信", class: "btn btn-primary" %>
+					</div>
+				<% end %>
+			</div>
 		</div>
+		<!--コメント機能-->
 	</div>
-	<!--コメント機能-->
+		
 </div>
-
-
-
-
-
 
 
 

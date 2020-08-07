@@ -1,51 +1,48 @@
 <div class="row">
-	<!--レイアウト用-->
-	<div class="col-sm-4"></div>
-	<!--レイアウト用-->
-
+	<div class="col-lg-3">
+		<%= render "users/sidebar", user: current_user %>
+	</div>
 	<!--新規投稿フォーム-->
-	<div class="col-sm-4">
+	<div class="col-lg-9">
+		<h2>新規投稿</h2>
+			<!--エラーメッセージ-->
+		<% if @song.errors.any? %>
+			<h4><%= @song.errors.count %>errors</h4>
+			<ul>
+				<% @song.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+
 		<%= form_for(@song) do |f| %>
+			<div class="song-container">
+				<div class="song-field">
+					<%= f.label :"イメージ画像", class: "field-title" %>
+					<%= f.attachment_field :image, class: "field" %>
+				</div>
 
-			<!--エラーメッセージ-->
-			<% if @song.errors.any? %>
-				<h4><%= @song.errors.count %>errors</h4>
-				<ul>
-					<% @song.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
-					<% end %>
-				</ul>
-			<% end %>
-			<!--エラーメッセージ-->
+				<div class="song-field">
+					<%= f.label :"曲名", class: "field-title" %>
+					<%= f.text_field :title, class: "field-class" %>
+				</div>
 
-			<div class="field">
-				<%= f.label :"イメージ画像" %>
-				<%= f.attachment_field :image %>
-			</div>
+				<div class="song-field">
+					<%= f.label :"アーティスト名", class: "field-title" %>
+					<%= f.text_field :artist_name, class: "field field-class" %>
+				</div>
 
-			<div class="field">
-				<%= f.label :"曲名" %>
-				<%= f.text_field :title %>
-			</div>
+				<div class="song-field">
+					<%= f.label :"本文", class: "field-title" %>
+					<%= f.text_area :body, class: "field area-class" %>
+				</div>
 
-			<div class="field">
-				<%= f.label :"アーティスト名" %>
-				<%= f.text_field :artist_name %>
-			</div>
-
-			<div class="field">
-				<%= f.label :"本文" %>
-				<%= f.text_area :body %>
-			</div>
-
-			<div class="actions">
-				<%= f.submit "投稿する" %>
+				<div class="actions field">
+					<%= f.submit "投稿する", class: "btn btn-primary" %>
+				</div>
 			</div>
 		<% end %>
 	</div>
 	<!--新規投稿フォーム-->
 
-	<!--レイアウト用-->
-	<div class="col-sm-4"></div>
-	<!--レイアウト用-->
 </div>

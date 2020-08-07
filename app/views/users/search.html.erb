@@ -6,34 +6,41 @@
 	<!--サイドバー-->
 
 	<div class="col-lg-9">
+		<h2>検索結果</h2>
 		<% @user.each do |user| %>
 			<table>
 				<tr>
-					<td width="20%">
-						<%= attachment_image_tag user, :profile_image_id, :fill, 80, 80, fallback: "no_image_user.png", size: "80x80" %>
+					<td width=25%">
+						<%= link_to user_path(user.id) do %>
+							<%= attachment_image_tag user, :profile_image_id, :fill, 80, 80, fallback: "no_image_user.png", size: "80x80" %>
+							<h5><%= user.name %></h5>
+						<% end %>
 					</td>
-					<td class="user-profile" width="60%">
-						<h4><%= user.name %></h4>
-					</td>
-					<td class="user-profile">
+					<td width="55%">
 						<%= user.introduction %>
 					</td>
-					<td class="user-profile" width="">
-						<%= link_to followings_user_path(user) do %>
-							フォロー：<%= user.followings.count %>
-						<% end %>
-					</td>
-					<td class="user-profile">
-						<%= link_to followers_user_path(@user) do %>
-							フォロワー：<%= user.followers.count %>
-						<% end %>
-					</td>
-					<td class="user-profile">
-						<%= link_to "いいね", favorites_user_path(user) %>
+					<td width="20%">
+						<p>
+							<%= link_to "いいねした投稿", favorites_user_path(user) %>
+						</p>
+						<p>
+							<%= link_to followings_user_path(user) do %>
+								フォロー：<%= user.followings.count %>
+							<% end %>
+						</p>
+						<p>
+							<%= link_to followers_user_path(@user) do %>
+								フォロワー：<%= user.followers.count %>
+							<% end %>
+						</p>
 					</td>
 					<!--フォローボタン-->
-					<td width="20%">
-						<%= render "relationships/follow_button", user: user %>
+					<td width="10%">
+						<% if user == current_user %>
+							<%= link_to "　マイページ　", user_path(current_user), class: "btn btn-success btn-sm" %>
+						<% else %>
+							<%= render "relationships/follow_button_sm", user: user %>
+						<% end %>
 					</td>
 					<!--フォローボタン-->
 				</tr>

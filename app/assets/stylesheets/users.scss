@@ -2,9 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// サイドバー
+.user-list {
+	margin-bottom: 25px;
+}
 
-.fff, .user-profile {
-	display: list-item;
-	list-style: none;
+.user-name {
+	padding-left: 27px;
+}
+
+//　サイドバー
+
+.user-image {
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.follow-box {
+	margin: 20px;
+}
+
+.current-user-name {
+	display: inline;
+	padding-left: 10px;
+}
+
+.follow {
+	display: inline;
+	padding-left: 20px;
 }

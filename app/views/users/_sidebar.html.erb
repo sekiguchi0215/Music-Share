@@ -1,36 +1,68 @@
-<div>
+<div class="current-user">
 	<%= link_to user_path(user) do %>
-		<%= attachment_image_tag user, :profile_image_id, :fill, 50, 50, fallback: "no_image_user.png", size: "80x80" %>
+		<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "user-image" %>
+		<h4 class="current-user-name"><strong><%= user.name %></strong></h4>
 	<% end %>
-</div>
-<div>
-	<%= link_to "#{user.name}", user_path(user) %>
-</div>
-<div>
-	<%= link_to "新規投稿", new_song_path %>
-</div>	
-<dir>
-	<!--<%=  %>-->
-	通知
-</dir>
-<div>
-	フォロー：
-	<%= link_to followings_user_path(user) do %>
-		<%= user.followings.count %>
-	<% end %>
-</div>
-<div>
-	フォロワー：
-	<%= link_to followers_user_path(user) do %>
-		<%= user.followers.count %>
-	<% end %>
-</div>
-<div>
-	<%= link_to "いいねリスト", favorites_user_path(user) %>
-</div>
-<div>
-	<%= link_to "プロフィールを編集", edit_user_path(user) %>
 </div>
 
+<div class="follow-box">
+	<p class="follow">
+		フォロー：
+		<%= link_to followings_user_path(user) do %>
+			<strong><%= user.followings.count %></strong>
+		<% end %>
+	</p>
+	<p class="follow">
+		フォロワー：
+		<%= link_to followers_user_path(user) do %>
+			<strong><%= user.followers.count %></strong>
+		<% end %>
+	</p>
+</div>
+
+<table class="table">
+	<tr>
+		<th>
+			<%= link_to new_song_path do %>
+				<span class="glyphicon glyphicon-new-window" aria-hidden="true"><strong> 新規投稿</strong></span>
+			<% end %>
+		</th>
+	</tr>
+	<tr>
+		<th>
+			<%= link_to notifications_path do %>
+				<span class="glyphicon glyphicon-bell" aria-hidden="true"><strong> 通知</strong></span>
+				<!--未確認の通知があればアイコンを表示-->
+				<% if unchecked_notifications.any? %>
+					<i class="fas fa-exclamation-circle" style="color: orange;"></i>
+				<% else %>
+					<i class="fas fa-exclamation-circle" style="display: none;"></i>
+				<% end %>
+
+			<% end %>
+		</th>
+	</tr>
+	<tr>
+		<th>
+			<%= link_to favorites_user_path(user) do %>
+				<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"><strong> いいねリスト</strong></span>
+			<% end %>
+		</th>
+	</tr>
+	<tr>
+		<th>
+			<%= link_to edit_user_path(user) do %>
+				<span class="glyphicon glyphicon-wrench" aria-hidden="true"><strong> プロフィールを編集</strong></span>
+			<% end %>
+		</th>
+	</tr>
+	<tr>
+		<th>
+			<%= link_to destroy_user_session_path, method: :delete do %>
+				<span class="glyphicon glyphicon-log-out" aria-hidden="true"><strong> ログアウト</strong></span>
+			<% end %>
+		</th>
+	</tr>
+</table>
 
 

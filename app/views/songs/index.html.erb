@@ -1,53 +1,52 @@
 <div class="row">
-	<!--レイアウト用-->
-	<div class="col-sm-2"></div>
-	<!--レイアウト用-->
+	<div class="col-lg-3">
+		<%= render "users/sidebar", user: current_user %>
+	</div>
 	
-	<div class="col-sm-8">
+	<div class="col-sm-9">
+		<div class="song-index-head">
+			<h2>投稿一覧</h2>
+			<!--投稿検索フォーム-->
+	        <%= form_with(url: search_songs_path, local: true, method: :get, class: "search-form") do |f| %>
+	            <span class="glyphicon glyphicon-search" aria-hidden="true">　</span>
+	            <%= f.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
+	            <%= f.submit "検索", class: "search-btn" %>
+	        <% end %>
+		</div>
+		
 		<% @songs.each do |song| %>
-			<%= link_to song_path(song.id) do %>
-				<div class="card">
-					<div class="card-img-top">
-						<%= attachment_image_tag song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "100x60" %>
-					</div>
-					<div class="card-body">
-						<h3 class="card-title">
-							<span class="note">♪</span> <%= song.title %>
-						</h3>
-						<div class="card-title">
-							アーティスト：<%= song.artist_name %>
+			<div class="card-deck">
+				<%= link_to song_path(song.id) do %>
+					<div class="card" style="width: 30rem">
+						<div class="card-img-top">
+							<%= attachment_image_tag song, :image, :fill, 200, 120, fallback: "no_image_song.jpg", size: "200x120" %>
 						</div>
-						<div class="card-text">
-							<%= song.body %>
-						</div>
-						<div class="card-footer">
-							<%= song.user.name %>
-							<!--<%=  %>-->
+						<div class="card-body">
+							<h3 class="card-title">
+								<span class="note">♪</span> <%= song.title %>
+							</h3>
+							<div class="card-subtitle">
+								アーティスト：<%= song.artist_name %>
+							</div>
+							<div class="card-text">
+								<%= song.body %>
+							</div>
+							<div class="card-footer">
+								<%= song.user.name %>
+								<!--<%=  %>-->
 
-							<!--いいね機能-->
-							<% if song.favorited_by?(current_user) %>
-								<%= link_to song_favorites_path(song), method: :delete do %>
-									<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" style="font-size: 15px"></span>
-									<%= song.favorites.count %>
-								<% end %>
-							<% else %>
-								<%= link_to song_favorites_path(song), method: :post do %>
-									<span class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 15px"></span>
-									<%= song.favorites.count %>
-								<% end %>
-							<% end %>
-							<!--いいね機能-->
-							<!--コメント数-->
-							<p>コメント数：<%= song.comments.count %></p>
-							<!--コメント数-->
+								<!--いいね機能-->
+								<%= render "favorites/favorite_button", song: song %>
+								
+								<!--コメント数-->
+								<i class="far fa-comment"> <%= song.comments.count %></i>
+								
+							</div>
 						</div>
 					</div>
-				</div>
-			<% end %>
+				<% end %>
+			</div>
 		<% end %>
 	</div>
 
-	<!--レイアウト用-->
-	<div class="col-sm-2"></div>
-	<!--レイアウト用-->
 </div>	

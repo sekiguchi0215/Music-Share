@@ -22,7 +22,7 @@ class Song < ApplicationRecord
 	end
 
 	# 通知機能
-	has_many :notifications, dependent: :destory
+	has_many :notifications, dependent: :destroy
 
 	# いいねの通知 
 	def create_notification_favorite!(current_user)
@@ -30,7 +30,7 @@ class Song < ApplicationRecord
 
 		if temp.blank?
 			notification = current_user.active_notifications.new(
-				post_id: id,
+				song_id: id,
 				visited_id: user_id,
 				action: "favorite"
 			)
@@ -44,18 +44,18 @@ class Song < ApplicationRecord
 
 	# コメントの通知
 	def create_notification_comment!(current_user, comment_id)
-		temp_ids = Comment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
+		temp_ids = Comment.select(:user_id).where(song_id: id).where.not(user_id: current_user.id).distinct
 		temp_ids.each do |temp_id|
 			save_notification_comment!(current_user, comment_id, temp_id["user_id"])
 		end
 		save_notification_comment!(current_user, comment_id, user_id) if temp_ids.blank?
 	end
-
-	def save_notificaion_comment!(current_user, comment_id, visited_id)
+	
+	def save_notification_comment!(current_user, comment_id, visited_id)
 		notification = current_user.active_notifications.new(
 			song_id: id,
 			comment_id: comment_id,
-			visited_id: visited_id
+			visited_id: visited_id,
 			action: "comment"
 		)
 		if notification.visitor_id == notification.visited_id
@@ -63,6 +63,7 @@ class Song < ApplicationRecord
 		end
 		notification.save if notification.valid?
 	end
+	# コメントの通知
 
 end
 
