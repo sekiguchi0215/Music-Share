@@ -1,48 +1,48 @@
 <div class="row">
-	<!--<%=  %>-->
+
 	<div class="col-lg-3">
 		<%= render "sidebar", user: current_user %>
 	</div>
+	
 	<div class="col-lg-9">
 		<!--ユーザ情報-->
-		<div class="user-index">
+		<div style="margin-bottom: 20px;">
 			<% if @user == current_user %>
 				<h3>マイページ</h3>
 			<% else %>
 				<table>
 					<tr>
-						<td width="20%">
-							<%= attachment_image_tag @user, :profile_image_id, :fill, 150, 150, fallback: "no_image_user.png", size: "150x150" %>
+						<td width="25%">
+							<%= attachment_image_tag @user, :profile_image_id, :fill, 150, 150, fallback: "no_image_user.png", size: "150x150", class: "img-circle user-image" %>
+							<h3 style="padding-left: 40px;"><%= @user.name %></h3>
 						</td>
-						<td class="user-profile" width="60%">
-							<h4><%= @user.name %></h4>
-						</td>
-						<td class="user-profile">
+						<td width="45%">
 							<%= @user.introduction %>
 						</td>
-						<td class="user-profile" width="">
-							<%= link_to followings_user_path(@user) do %>
-								フォロー：<%= @user.followings.count %>
-							<% end %>
-						</td>
-						<td class="user-profile">
-							<%= link_to followers_user_path(@user) do %>
-								フォロワー：<%= @user.followers.count %>
-							<% end %>
-						</td>
-						<td class="user-profile">
-							<%= link_to "いいね", favorites_user_path(@user) %>
+						<td width="20%">
+							<p>
+								<%= link_to followings_user_path(@user) do %>
+									フォロー：<%= @user.followings.count %>
+								<% end %>
+							</p>
+							<p>
+								<%= link_to followers_user_path(@user) do %>
+									フォロワー：<%= @user.followers.count %>
+								<% end %>
+							</p>
+							<p>
+								<%= link_to "いいね", favorites_user_path(@user) %>
+							</p>
 						</td>
 						<!--フォローボタン-->
-						<td width="20%">
+						<td width="10%">
 							<%= render "relationships/follow_button", user: @user %>
 						</td>
-						<!--フォローボタン-->
+						
 					</tr>
 				</table>
 			<% end %>
 		</div>
-		<!--ユーザ情報-->
 
 		<!--ユーザの投稿リスト-->
 		<div class="song-list">
@@ -77,6 +77,6 @@
 				</div>
 			<% end %>
 		</div>
-		<!--ユーザの投稿リスト-->
+		
 	</div>
 </div>

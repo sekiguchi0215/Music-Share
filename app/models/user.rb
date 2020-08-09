@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  default_scope -> { order(created_at: :desc) }
+
   has_many :songs, dependent: :destroy # 投稿機能
   has_many :comments, dependent: :destroy # コメント機能
   has_many :favorites, dependent: :destroy # いいね機能

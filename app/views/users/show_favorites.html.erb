@@ -25,11 +25,10 @@
 								</div>
 								<div class="card-footer">
 									<div class="favorites">
-										<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" style="font-size: 15px"></span>
-										<%= song.favorites.count %>
+										<%= render "favorites/favorite_button", song: song %>
 									</div>
 									<div class="comments">
-										<p>コメント数：<%= song.comments.count %></p>
+										<i class="far fa-comment"> <%= song.comments.count %></i>
 									</div>
 								</div>
 							</div>

@@ -1,6 +1,6 @@
 <div class="current-user">
 	<%= link_to user_path(user) do %>
-		<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "user-image" %>
+		<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "user-image img-circle" %>
 		<h4 class="current-user-name"><strong><%= user.name %></strong></h4>
 	<% end %>
 </div>
@@ -24,42 +24,46 @@
 	<tr>
 		<th>
 			<%= link_to new_song_path do %>
-				<span class="glyphicon glyphicon-new-window" aria-hidden="true"><strong> 新規投稿</strong></span>
+				<i class="fas fa-external-link-alt" style="font-size: 20px;"></i>
+				&nbsp;<strong>新規投稿</strong>
 			<% end %>
 		</th>
 	</tr>
 	<tr>
 		<th>
 			<%= link_to notifications_path do %>
-				<span class="glyphicon glyphicon-bell" aria-hidden="true"><strong> 通知</strong></span>
+				<i class="far fa-bell"  style="font-size: 23px;"></i>
+				&nbsp;<strong>通知</strong>
 				<!--未確認の通知があればアイコンを表示-->
 				<% if unchecked_notifications.any? %>
-					<i class="fas fa-exclamation-circle" style="color: orange;"></i>
+					<i class="fas fa-exclamation-circle" style="color: orange;" style="font-size: 20px;"></i>
 				<% else %>
 					<i class="fas fa-exclamation-circle" style="display: none;"></i>
 				<% end %>
-
 			<% end %>
 		</th>
 	</tr>
 	<tr>
 		<th>
 			<%= link_to favorites_user_path(user) do %>
-				<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"><strong> いいねリスト</strong></span>
+				<i class="fas fa-heart" style="font-size: 20px"></i>
+				&nbsp;<strong>いいねリスト</strong>
 			<% end %>
 		</th>
 	</tr>
 	<tr>
 		<th>
 			<%= link_to edit_user_path(user) do %>
-				<span class="glyphicon glyphicon-wrench" aria-hidden="true"><strong> プロフィールを編集</strong></span>
+				<i class="fas fa-user-edit" style="font-size: 20px;"></i>
+				&nbsp;<strong>プロフィールを編集</strong>
 			<% end %>
 		</th>
 	</tr>
 	<tr>
 		<th>
 			<%= link_to destroy_user_session_path, method: :delete do %>
-				<span class="glyphicon glyphicon-log-out" aria-hidden="true"><strong> ログアウト</strong></span>
+				<i class="fas fa-sign-out-alt" style="font-size: 23px;"></i>
+				&nbsp;<strong>ログアウト</strong>
 			<% end %>
 		</th>
 	</tr>

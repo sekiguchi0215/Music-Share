@@ -14,10 +14,10 @@
 	        <% end %>
 		</div>
 		
-		<% @songs.each do |song| %>
-			<div class="card-deck">
-				<%= link_to song_path(song.id) do %>
-					<div class="card" style="width: 30rem">
+		<div class="card-deck">
+			<% @songs.each do |song| %>
+				<div class="card" style="width: 30rem">
+					<%= link_to song_path(song.id) do %>
 						<div class="card-img-top">
 							<%= attachment_image_tag song, :image, :fill, 200, 120, fallback: "no_image_song.jpg", size: "200x120" %>
 						</div>
@@ -28,25 +28,29 @@
 							<div class="card-subtitle">
 								アーティスト：<%= song.artist_name %>
 							</div>
+					<% end %>
 							<div class="card-text">
-								<%= song.body %>
-							</div>
-							<div class="card-footer">
-								<%= song.user.name %>
-								<!--<%=  %>-->
-
-								<!--いいね機能-->
-								<%= render "favorites/favorite_button", song: song %>
-								
-								<!--コメント数-->
-								<i class="far fa-comment"> <%= song.comments.count %></i>
-								
+								<p class="card-bottom">
+									投稿者:
+									<%= link_to user_path(song.user_id) do %>
+										<%= song.user.name %>
+									<% end %>
+								</p>
+								<p class="card-bottom">
+									<!--いいね機能-->
+									<%= render "favorites/favorite_button", song: song %>
+								</p>
+								<p class="card-bottom">
+									<!--コメント数-->
+									<i class="far fa-comment"> <%= song.comments.count %></i>
+								</p>					
+										<!--<%=  %>-->
 							</div>
 						</div>
-					</div>
-				<% end %>
-			</div>
-		<% end %>
+				</div>
+			<% end %>	
+		</div>
+		
 	</div>
 
 </div>	

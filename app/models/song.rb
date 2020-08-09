@@ -1,5 +1,7 @@
 class Song < ApplicationRecord
 
+	default_scope -> { order(created_at: :desc) }
+
 	attachment :image
 	validates :title, presence: true
 	validates :artist_name, presence: true

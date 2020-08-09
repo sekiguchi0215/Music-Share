@@ -1,2 +1,2 @@
 
-$(".song_<%= @song.id%>").html("<%= j(render 'favorites/favorite_button', song: @song ) %>");
+$("#favorite").html("<%= j(render partial: 'favorites/favorite_button', locals: {song: @song} ) %>");

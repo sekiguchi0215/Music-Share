@@ -29,7 +29,7 @@
 					<strong>投稿者</strong>：<%= link_to "#{@song.user.name}", user_path(@song.user.id) %>
 
 					<!--いいね機能-->
-					<div id="song_<%= @song.id%>">
+					<div id="favorite">
 						<%= render "favorites/favorite_button", song: @song %>
 					</div>
 					

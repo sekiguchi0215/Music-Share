@@ -8,15 +8,15 @@
 	<div class="col-lg-9">
 		<h2>検索結果</h2>
 		<% @user.each do |user| %>
-			<table>
+			<table class="table">
 				<tr>
 					<td width=25%">
 						<%= link_to user_path(user.id) do %>
-							<%= attachment_image_tag user, :profile_image_id, :fill, 80, 80, fallback: "no_image_user.png", size: "80x80" %>
-							<h5><%= user.name %></h5>
+							<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "user-image img-circle" %>
+							<h5 class="user-name"><%= user.name %></h5>
 						<% end %>
 					</td>
-					<td width="55%">
+					<td width="45%">
 						<%= user.introduction %>
 					</td>
 					<td width="20%">
@@ -37,7 +37,7 @@
 					<!--フォローボタン-->
 					<td width="10%">
 						<% if user == current_user %>
-							<%= link_to "　マイページ　", user_path(current_user), class: "btn btn-success btn-sm" %>
+							<%= link_to "マイページ", user_path(current_user), class: "btn btn-success btn-sm" %>
 						<% else %>
 							<%= render "relationships/follow_button_sm", user: user %>
 						<% end %>

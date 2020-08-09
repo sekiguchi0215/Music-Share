@@ -5,6 +5,7 @@
 	</div>
 
 	<div class="col-lg-9">
+		<h2>検索結果</h2>
 		<% @songs.each do |song| %>
 			<%= link_to song_path(song.id) do %>
 				<div class="card">

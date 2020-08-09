@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -32,32 +33,38 @@
                   <!--ログイン中-->
                   <li class="nav-item">
                     <%= link_to users_path do %>
-                       <span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;<strong>ユーザーリスト</strong></span>
+                       <i class="fas fa-user" style="font-size: 20px;"></i>
+                       &nbsp;<strong>ユーザーリスト</strong>
                     <% end %>
                   </li>
                   <li class="nav-item">
                     <%= link_to songs_path do %>
-                       <span class="glyphicon glyphicon-music" aria-hidden="true">&nbsp;<strong>投稿一覧</strong></span>
+                       <i class="fab fa-itunes-note" style="font-size: 23px;"></i>
+                       &nbsp;<strong>投稿一覧</strong>
                     <% end %>
                   </li>
                 <% else %>
                   <!--ログイン外-->
                   <li class="nav-item">
                     <%= link_to root_path do %>
-                      <span class="glyphicon glyphicon-home" aria-hidden="true">&nbsp;<strong>Top</strong></span>
+                      <i class="fas fa-home" style="font-size: 20px;"></i>
+                      &nbsp;<strong>Top</strong>
                     <% end %>
                   </li>
                   <li class="nav-item">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true">&nbsp;<strong>アバウト</strong></span>
+                    <i class="fas fa-paperclip" style="font-size: 20px;"></i>
+                    &nbsp;<strong>アバウト</strong>
                   </li>
                   <li class="nav-item">
                     <%= link_to new_user_registration_path do %>
-                      <span class="glyphicon glyphicon-edit" aria-hidden="true">&nbsp;<strong>新規登録</strong></span>
+                      <i class="fas fa-user-plus" style="font-size: 20px;"></i>
+                      &nbsp;<strong>新規登録</strong>
                     <% end %>
                   </li>
                   <li class="nav-item">
                     <%= link_to new_user_session_path do %>
-                      <span class="glyphicon glyphicon-edit" aria-hidden="true">&nbsp;<strong>ログイン</strong></span>
+                      <i class="fas fa-sign-in-alt" style="font-size: 20px;"></i>
+                      &nbsp;<strong>ログイン</strong>
                     <% end %>
                   </li>
                 <% end %>
@@ -74,7 +81,7 @@
       </div>
     </div>
 
-    <footer class="fixed-bottom" style="background-color: #ffeeff" >
+    <footer class="" style="background-color: #ffeeff" >
       <p class="copyright">©︎MusicShare</p>
     </footer>
   </body>

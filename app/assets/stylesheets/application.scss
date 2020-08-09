@@ -14,13 +14,8 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap"; 
-
-
-body {
-    font-family: 'ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN','メイリオ', Meiryo;
-}
+// @import "bootstrap-sprockets";
+// @import "bootstrap"; 
 
 
 .glyphicon {
@@ -52,6 +47,7 @@ h2 {
 
 .navbar {
     height: 100px;
+    margin-bottom: 40px;
 }
 
 li {
@@ -66,15 +62,18 @@ li {
 }
 
 
-// 背景 
+// 背景 フォント
 
 .body {
     background-image: image-url("notes-leaf.png");
     background-size: cover;
     background-position: center;
+    font-family: 'ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN','メイリオ', Meiryo;
+    min-height: 1000px;
 }
 
 .mask {
+    min-height: 1500px;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.7);
 }
@@ -92,6 +91,60 @@ footer {
     line-height: 150px;
     padding-left: 1600px;
 }
+
+
+
+//  新規会員登録　ログイン
+
+.text-center {
+    padding-top: 50px;
+}
+
+.sign-up, .sign-in {
+    padding-bottom: 30px;
+}
+
+.field {
+    margin: 15px;
+}
+
+.sign-up-path, .sign-in-path {
+    padding: 20px;
+}
+
+.background {
+    background-color: white;
+}
+
+
+//  新規登録
+
+.signup-box {
+    height: 600px;
+    border: 2px solid;
+    background-image: image-url("notes-blue.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.masking {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+//  ログイン
+
+
+
+.login-box {
+    height: 500px;
+    border: 2px solid;
+    background-image: image-url("notes-rainbow.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 
 
 
