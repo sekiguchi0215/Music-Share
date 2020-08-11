@@ -3,45 +3,55 @@
 		<%= render "users/sidebar", user: current_user %>
 	</div>
 	<!--<%=  %>-->
-	<div class="col-lg-9">
-		<h2>投稿編集ページ</h2>	
-		<!--エラー表示-->
-		<% if @song.errors.any? %>
-			<h3><%= @song.errors.count %></h3>
-			<ul>
-				<% @user.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>
-			</ul>
-		<% end %>
-		<!--エラー表示-->
-		<!--編集フォーム-->
-		<%= form_for(@song) do |f| %>
-			<div class="song-container">
-				<div class="song-field">
-					<%= f.label :"イメージ画像", class: "field-title" %>
-					<%= f.attachment_field :image, class: "field" %>
-				</div>
+	<div class="col-lg-1"></div>
+	<div class="col-lg-6">
+		<div class="background">
+			<div class="song-edit-box text-center">
+				<div class="song-masking">
+					<h1 class="page-title">投稿編集ページ</h1>	
+					<!--エラー表示-->
+					<% if @song.errors.any? %>
+						<h3><%= @song.errors.count %></h3>
+						<ul>
+							<% @user.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+							<% end %>
+						</ul>
+					<% end %>
 
-				<div class="song-field">
-					<%= f.label :"曲名", class: "field-title" %>
-					<%= f.text_field :title, class: "field-class" %>
-				</div>
+					<!--編集フォーム-->
+					<%= form_for(@song) do |f| %>
+						<div class="song-container">
+							<div class="song-field">
+								<strong><p>イメージ画像</p></strong>
+								<%= f.attachment_field :image, class: "field" %>
+							</div>
 
-				<div class="song-field">
-					<%= f.label :"アーティスト名", class: "field-title" %>
-					<%= f.text_field :artist_name, class: "field field-class" %>
-				</div>
+							<div class="song-field">
+								<strong><p>曲名</p></strong>
+								<%= f.text_field :title, class: "field-class" %>
+							</div>
 
-				<div class="song-field">
-					<%= f.label :"本文", class: "field-title" %>
-					<%= f.text_area :body, class: "field area-class" %>
-				</div>
+							<div class="song-field">
+								<strong><p>アーティスト名</p></strong>
+								<%= f.text_field :artist_name, class: "field field-class" %>
+							</div>
 
-				<div class="action">
-					<%= f.submit "編集を保存する", class: "btn btn-success" %>
+							<div class="song-field">
+								<strong><p>本文</p></strong>
+								<%= f.text_area :body, class: "field area-class" %>
+							</div>
+
+							<div class="action">
+								<%= f.submit "編集を保存する", class: "btn btn-success" %>
+							</div>
+						</div>
+					<% end %>
 				</div>
 			</div>
-		<% end %>
+		</div>
 	</div>
+
+	<div class="col-lg-2"></div>
+
 </div>	

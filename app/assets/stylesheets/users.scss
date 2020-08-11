@@ -30,3 +30,58 @@
 	display: inline;
 	padding-left: 20px;
 }
+
+//  プロフィール編集画面
+
+.user-edit-box {
+	height: 560px;
+	border: 2px solid;
+    background-image: image-url("notes-blue.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.field-class {
+	width: 400px;
+	height: 33px;
+	border-radius: 3px;
+	padding-left: 15px;
+}
+
+.area-class {
+	width: 400px;
+	height: 120px;
+	border-radius: 5px;
+}
+
+
+//  いいねリスト
+
+.song-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	
+}
+
+.song {
+	height: auto;
+	border: 1px solid;
+	border-radius: 3px;
+	margin: 10px;
+	background-color: #eeffff;
+}
+
+.song-piece {
+	margin-bottom: 15px;
+}
+
+.song-list > div {
+	flex-basis: 15%;
+	align-self: baseline;
+}
+
+
+
+
+

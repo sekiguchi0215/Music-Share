@@ -1,7 +1,7 @@
-<div class="current-user">
+<div class="current-user text-center">
 	<%= link_to user_path(user) do %>
-		<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "user-image img-circle" %>
-		<h4 class="current-user-name"><strong><%= user.name %></strong></h4>
+		<%= attachment_image_tag user, :profile_image_id, :fill, 150, 150, fallback: "no_image_user.png", size: "150x150", class: "user-image" %>
+		<h4 style="padding-top: 5px;"><strong><%= user.name %></strong></h4>
 	<% end %>
 </div>
 
@@ -56,14 +56,6 @@
 			<%= link_to edit_user_path(user) do %>
 				<i class="fas fa-user-edit" style="font-size: 20px;"></i>
 				&nbsp;<strong>プロフィールを編集</strong>
-			<% end %>
-		</th>
-	</tr>
-	<tr>
-		<th>
-			<%= link_to destroy_user_session_path, method: :delete do %>
-				<i class="fas fa-sign-out-alt" style="font-size: 23px;"></i>
-				&nbsp;<strong>ログアウト</strong>
 			<% end %>
 		</th>
 	</tr>

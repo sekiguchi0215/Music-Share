@@ -1,45 +1,43 @@
 <div class="row">
-	<!--レイアウト用-->
+	
 	<div class="col-lg-3">
 		<%= render "users/sidebar", user: current_user %>
 	</div>
-	<!--レイアウト用-->
 
 	<!--投稿詳細-->
-	<div class="col-lg-9 card-list">
-		<div class="card">
-			<div class="card-img-top">
-				<%= attachment_image_tag @song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "200x120" %>
+	<div class="col-lg-9">
+		<div class="song-show-container clearfix">
+			<div class="page-left">
+				<%= attachment_image_tag @song, :image, :fill, 400, 240, fallback: "no_image_song.jpg", size: "400x240" %>
 			</div>
-			<div class="card-body">
-				<h2 class="card-title">
+			<div class="page-right">
+				<h1 class="song-index song-index-top">
 					<span style="font-size: 40px">♪ </span> <%= @song.title %>
 					<% if @song.user.id == current_user.id %>
-						<%= link_to "編集する", edit_song_path(@song.id), class: "btn btn-success" %>
+						<div class="button"><%= link_to "編集する", edit_song_path(@song.id), class: "btn btn-success btn-sm" %></div>
+						<div class="button"><%= link_to "削除する", song_path(@song.id), method: :delete, "data-confirm" => "削除しますか？", class: "btn btn-danger btn-sm" %></div>
 					<% end %>
-				</h2>
-				<div class="card-subtitle">
+				</h1>
+				<div class="song-index">
 					<strong>アーティスト名</strong>：<%= @song.artist_name %>
 				</div>
-				<div class="card-text">
+				<div class="song-index">
 					<strong>本文</strong>：<%= @song.body %>
 				</div>
-				<div class="card-footer">
-
+				<div class="song-index">
 					<strong>投稿者</strong>：<%= link_to "#{@song.user.name}", user_path(@song.user.id) %>
-
-					<!--いいね機能-->
-					<div id="favorite">
-						<%= render "favorites/favorite_button", song: @song %>
-					</div>
-					
 				</div>
+				<!--いいね機能-->
+				<div class="song-index" id="favorite">
+					<%= render "favorites/favorite_button", song: @song %>
+				</div>		
 			</div>
 		</div>
-		<!--投稿詳細-->
+			
+		
 		<!--コメント機能-->
 		<div class="comment-list">
-			<h4 class="comment-title">コメント一覧</h4>
+			<h4 class="comment-title">コメント一覧（<%= @song.comments.count %>件）</h4>
 			<% if @comments.exists? %>
 				<table class="table">
 					<tbody>
@@ -47,7 +45,7 @@
 							<tr>
 								<td width="30%">
 									<%= link_to comment.user do %>
-										<%= attachment_image_tag comment.user, :profile_image_id, :fill, 50, 50, fallback: "no_image_song.jpg", size: "50x50" %>
+										<%= attachment_image_tag comment.user, :profile_image_id, :fill, 50, 50, fallback: "no_image_user.png", size: "50x50", class: "user-image" %>
 										<%= comment.user.name %>
 									<% end %>
 								</td>
@@ -67,7 +65,19 @@
 			<% else %>
 				<p>まだコメントはありません。</p>
 			<% end %>
+
+			<div class="error-message">
+				<% if @comment.errors.any? %>
+					<h2><%= @comment.errors.count %></h2>
+					<ul>
+						<% @comment.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				<% end %>
+			</div>
 			
+			<!--コメント機能-->
 			<div class="comment-container">
 				<%= form_for [@song, @comment] do |f| %>
 					<div class="comment-form">
@@ -78,8 +88,9 @@
 					</div>
 				<% end %>
 			</div>
+
 		</div>
-		<!--コメント機能-->
+		
 	</div>
 		
 </div>

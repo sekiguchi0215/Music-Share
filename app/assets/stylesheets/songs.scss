@@ -11,7 +11,7 @@
 }
 
 
-// 新規投稿 投稿編集
+// 新規投稿 
 
 .song-container {
 	padding-left: 30px;
@@ -20,10 +20,6 @@
 
 .song-field {
 	padding-bottom: 20px;
-}
-
-.field-title {
-	display: block;
 }
 
 .field-class {
@@ -35,13 +31,39 @@
 
 .area-class {
 	width: 500px;
-	height: 100px;
+	height: 120px;
 	border-radius: 5px;
 }
 
 .field {
 	marign-left: 15px;
 }
+
+.song-new-box {
+	height: 770px;
+	border: 2px solid;
+    background-image: image-url("notes-palepink.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.song-masking {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+//  投稿編集
+
+.song-edit-box {
+	height: 770px;
+	border: 2px solid;
+    background-image: image-url("notes-palepink.png");
+    background-size: cover;
+    background-position: center;
+}
+
 
 
 // 投稿一覧ページ
@@ -50,12 +72,28 @@
 	margin-bottom: 25px;
 }
 
-.card-img-top {
-	margin: 10px auto;
+.song-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	
 }
 
-.card-bottom {
-	display: inline;
+.song {
+	height: auto;
+	border: 1px solid;
+	border-radius: 3px;
+	margin: 10px;
+	background-color: #eeffff;
+}
+
+.song-piece {
+	margin-bottom: 15px;
+}
+
+.song-list > div {
+	flex-basis: 15%;
+	align-self: baseline;
 }
 
 
@@ -78,16 +116,22 @@
 
 // 投稿詳細ページ
 
-.card {
-	border: 1px solid;
-	border-radius: 3px;
-	float: left;
-	margin-right: 10px;
-	margin-bottom: 10px;
+.button {
+	display: inline;
 }
 
+.page-left {
+	float: left;
+	padding-right: 30px;
+}
 
+.song-index-top {
+	padding-top: 20px;
+}
 
+.song-index {
+	margin-bottom: 20px;
+}
 
 
 

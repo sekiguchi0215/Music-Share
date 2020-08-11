@@ -1,31 +1,53 @@
 <div class="row">
-	<!--<%=  %>-->
-	<% if @user.errors.any? %>
-		<h2><%= @user.errors.count %></h2>
-		<ul>
-			<% @user.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
-			<% end %>
-		</ul>
-	<% end %>
-
-	<div class="form-body">
-		<%= form_for(@user) do |f| %>
-			<div class="field">
-				<%= f.label :"アイコン" %>
-				<!--<%= f.attachment_field :profile_image %>-->
-			</div>
-			<div class="field">
-				<%= f.label :"名前" %>
-				<%= f.text_field :name  %>
-			</div>
-			<div class="field">
-				<%= f.label :"プロフィール" %>
-				<%= f.text_area :introduction %>
-			</div>
-			<div class="actions">
-				<%= f.submit "変更を保存する" %>
-			</div>
-		<% end %>
+	<div class="col-lg-3">
+		<%= render "sidebar", user: current_user %>
 	</div>
+
+	<div class="col-lg-1"></div>
+
+	<div class="col-lg-6">
+		<% if @user.errors.any? %>
+			<h2><%= @user.errors.count %></h2>
+			<ul>
+				<% @user.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<div class="background">
+			<div class="user-edit-box text-center">
+				<div class="masking">
+					<h1 class="page-title">プロフィール編集</h1>
+					
+
+					<div class="form-body">
+						<%= form_for(@user) do |f| %>
+							<div class="field">
+								<strong><p>アイコン</p></strong>
+								<%= f.attachment_field :profile_image %>
+							</div>
+
+							<div class="field">
+								<strong><p>ユーザー名</p></strong>
+								<%= f.text_field :name, class: "field-class" %>
+							</div>
+
+							<div class="field">
+								<strong><p>プロフィール</p></strong>
+								<%= f.text_area :introduction, class: "area-class" %>
+							</div>
+
+							<div class="actions">
+								<%= f.submit "変更を保存する", class: "btn btn-success" %>
+							</div>
+						<% end %>
+					</div>
+
+				</div>
+			</div>
+		</div>				
+	</div>
+	
+	<div class="col-lg-2"></div>
+	
 </div>

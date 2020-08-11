@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
 
   root "songs#top"
+
+  get "about" => "songs#about"
+
+  post "/users/guest_sign_in" => 'users#new_guest'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show]
+	before_action :authenticate_user!, except: [:top]
 
 	def index
 		@songs = Song.all
@@ -19,7 +19,7 @@ class SongsController < ApplicationController
 		@song = Song.new(song_params)
 		@song.user_id = current_user.id
 		if @song.save
-			redirect_to songs_path, notice: "投稿完了しました！"
+			redirect_to songs_path, notice: "投稿しました。"
 		else
 			render "new"
 		end
@@ -39,13 +39,17 @@ class SongsController < ApplicationController
 	end
 
 	def destroy
-		@song = Song.find(params[:id])
-		@song.destroy
+		song = Song.find(params[:id])
+		song.destroy
 		redirect_to songs_path, notice: "投稿を削除しました。"
 	end
 
 	def search
 		@songs = Song.search(params[:keyword])
+	end
+
+	def top
+		@songs = Song.all
 	end
 
 	private

@@ -8,32 +8,22 @@
 
 		<div class="song-list">
 			<% @user.favorite_songs.each do |song| %>
-				<div class="card">
+				<div class="song text-center">
 					<%= link_to song_path(song.id) do %>
-						<div class="card-imag-top">
-							<%= attachment_image_tag song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "100x60" %>
+						<div class="song-img">
+							<%= attachment_image_tag song, :image, :fill, 200, 120, fallback: "no_image_song.jpg", size: "200x120" %>
 						</div>
-						<div class="card-body">
-							<h4 class="card-title">
-								<span class="note">♪</span> <%= song.title %>
-							</h4>
-							<div class="card-title">
-									アーティスト：<%= song.artist_name %>
-								</div>
-								<div class="card-text">
-									<%= song.body %>
-								</div>
-								<div class="card-footer">
-									<div class="favorites">
-										<%= render "favorites/favorite_button", song: song %>
-									</div>
-									<div class="comments">
-										<i class="far fa-comment"> <%= song.comments.count %></i>
-									</div>
-								</div>
-							</div>
-						</div>
+						<h4 class="song-piece" style="margin-top: 15px;">
+							<span class="note">♪</span> <%= song.title %>
+						</h4>
 					<% end %>
+						<div class="song-piece">
+							<%= song.artist_name %>
+						</div>
+						<div class="song-piece">
+							<i class="fas fa-heart" style="font-size: 15px; color: red;" ></i><strong>	<%= song.favorites.count %></strong>
+							<i class="far fa-comment" style="margin-left: 10px;"> <strong>	<%= song.comments.count %></strong></i>
+						</div>
 				</div>
 			<% end %>
 		</div>

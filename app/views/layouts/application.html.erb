@@ -43,6 +43,12 @@
                        &nbsp;<strong>投稿一覧</strong>
                     <% end %>
                   </li>
+                  <li class="nav-item">
+                    <%= link_to destroy_user_session_path, method: :delete do %>
+                      <i class="fas fa-sign-out-alt" style="font-size: 23px;"></i>
+                      &nbsp;<strong>ログアウト</strong>
+                    <% end %>
+                  </li>
                 <% else %>
                   <!--ログイン外-->
                   <li class="nav-item">
@@ -52,8 +58,10 @@
                     <% end %>
                   </li>
                   <li class="nav-item">
-                    <i class="fas fa-paperclip" style="font-size: 20px;"></i>
-                    &nbsp;<strong>アバウト</strong>
+                    <%= link_to about_path do %>
+                      <i class="fas fa-paperclip" style="font-size: 20px;"></i>
+                      &nbsp;<strong>アバウト</strong>
+                    <% end %>
                   </li>
                   <li class="nav-item">
                     <%= link_to new_user_registration_path do %>

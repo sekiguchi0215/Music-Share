@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+	before_action :authenticate_user!, except: [:new_guest]
+	
 	def index
 		@user = current_user
 		@users = User.all
@@ -46,6 +47,14 @@ class UsersController < ApplicationController
 
 	def search
 		@user = User.search(params[:keyword])
+	end
+
+	def new_guest
+		user = User.find_or_create_by!(name: "ゲスト", email: "guest@example.com") do |user|
+			user.password = SecureRandom.urlsafe_base64
+		end
+		sign_in user
+		redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
 	end
 	
 	private

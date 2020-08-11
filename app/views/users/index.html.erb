@@ -18,19 +18,16 @@
 		<% @users.each do |user| %>
 			<table class="table">
 				<tr>
-					<td width=25%">
+					<td width="15%" class="text-center">
 						<%= link_to user_path(user.id) do %>
 							<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "img-circle user-image" %>
-							<h5 class="user-name"><%= user.name %></h5>
+							<h5><%= user.name %></h5>
 						<% end %>
 					</td>
-					<td width="45%">
+					<td width="55%">
 						<%= user.introduction %>
 					</td>
 					<td width="20%">
-						<p>
-							<%= link_to "いいねした投稿", favorites_user_path(user) %>
-						</p>
 						<p>
 							<%= link_to followings_user_path(user) do %>
 								フォロー：<%= user.followings.count %>
@@ -40,6 +37,9 @@
 							<%= link_to followers_user_path(@user) do %>
 								フォロワー：<%= user.followers.count %>
 							<% end %>
+						</p>
+						<p>
+							<%= link_to "いいねした投稿", favorites_user_path(user) %>
 						</p>
 					</td>
 					<!--フォローボタン-->

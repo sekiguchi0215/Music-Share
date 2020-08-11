@@ -1,1 +1,42 @@
-top.html.erb
+<div class="row">
+	<div class="col-lg-3 guset-sidebar">
+		<h3 class="text-center guide-top">MusicShareへようこそ！</h3>
+		<p class="guide">このサイトでは、曲の感想や思い出を投稿しユーザー同士での交流ができます。</p><br>
+		<p class="guide">ログインしなくても投稿されている曲一覧は閲覧可能です。</p>
+		<div class="text-center">
+			<% unless user_signed_in? %>
+				<%= link_to "ゲストログイン (閲覧用)", users_guest_sign_in_path, method: :post, class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+	
+	<div class="col-sm-9">
+		<div class="song-index-head">
+			<h2>投稿一覧</h2>
+		</div>
+		
+		<div class="song-list">
+			<% @songs.each do |song| %>
+				<div class="song text-center">
+					<%= link_to song_path(song.id) do %>
+						<div class="song-img">
+							<%= attachment_image_tag song, :image, :fill, 200, 120, fallback: "no_image_song.jpg", size: "200x120" %>
+						</div>
+						<h4 class="song-piece" style="margin-top: 15px;">
+							<span class="note">♪</span> <%= song.title %>
+						</h4>
+					<% end %>
+						<div class="song-piece">
+							<%= song.artist_name %>
+						</div>
+						<div class="song-piece">
+							<i class="fas fa-heart" style="font-size: 15px; color: red;" ></i><strong>	<%= song.favorites.count %></strong>
+							<i class="far fa-comment" style="margin-left: 10px;"> <strong>	<%= song.comments.count %></strong></i>
+						</div>
+				</div>
+			<% end %>
+		</div>
+		
+	</div>
+
+</div>	

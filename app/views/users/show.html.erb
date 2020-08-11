@@ -12,9 +12,9 @@
 			<% else %>
 				<table>
 					<tr>
-						<td width="25%">
-							<%= attachment_image_tag @user, :profile_image_id, :fill, 150, 150, fallback: "no_image_user.png", size: "150x150", class: "img-circle user-image" %>
-							<h3 style="padding-left: 40px;"><%= @user.name %></h3>
+						<td width="25%" class="text-center">
+							<%= attachment_image_tag @user, :profile_image_id, :fill, 150, 150, fallback: "no_image_user.png", size: "150x150", class: "user-image" %>
+							<h3><%= @user.name %></h3>
 						</td>
 						<td width="45%">
 							<%= @user.introduction %>
@@ -31,7 +31,7 @@
 								<% end %>
 							</p>
 							<p>
-								<%= link_to "いいね", favorites_user_path(@user) %>
+								<%= link_to "いいねした投稿", favorites_user_path(@user) %>
 							</p>
 						</td>
 						<!--フォローボタン-->
@@ -47,33 +47,22 @@
 		<!--ユーザの投稿リスト-->
 		<div class="song-list">
 			<% @songs.each do |song| %>
-				<div class="card">
+				<div class="song text-center">
 					<%= link_to song_path(song.id) do %>
-						<div class="card-imag-top">
-							<%= attachment_image_tag song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "100x60" %>
+						<div class="song-img">
+							<%= attachment_image_tag song, :image, :fill, 200, 120, fallback: "no_image_song.jpg", size: "200x120" %>
 						</div>
-						<div class="card-body">
-							<h4 class="card-title">
-								<span class="note">♪</span> <%= song.title %>
-							</h4>
-							<div class="card-title">
-									アーティスト：<%= song.artist_name %>
-								</div>
-								<div class="card-text">
-									<%= song.body %>
-								</div>
-								<div class="card-footer">
-									<div class="favorites">
-										<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;" style="font-size: 15px"></span>
-										<%= song.favorites.count %>
-									</div>
-									<div class="comments">
-										<p>コメント数：<%= song.comments.count %></p>
-									</div>
-								</div>
-							</div>
-						</div>
+						<h4 class="song-piece" style="margin-top: 15px;">
+							<span class="note">♪</span> <%= song.title %>
+						</h4>
 					<% end %>
+						<div class="song-piece">
+							<%= song.artist_name %>
+						</div>
+						<div class="song-piece">
+							<i class="fas fa-heart" style="font-size: 15px; color: red;" ></i><strong>	<%= song.favorites.count %></strong>
+							<i class="far fa-comment" style="margin-left: 10px;"> <strong>	<%= song.comments.count %></strong></i>
+						</div>
 				</div>
 			<% end %>
 		</div>

@@ -3,9 +3,9 @@
 		<%= render "users/sidebar", user: current_user %>
 	</div>
 	<!--新規投稿フォーム-->
-	<div class="col-lg-9">
-		<h2>新規投稿</h2>
-			<!--エラーメッセージ-->
+	<div class="col-lg-1"></div>
+
+	<div class="col-lg-6">
 		<% if @song.errors.any? %>
 			<h4><%= @song.errors.count %>errors</h4>
 			<ul>
@@ -14,35 +14,47 @@
 				<% end %>
 			</ul>
 		<% end %>
+		<div class="background">
+			<div class="song-new-box text-center">
+				<div class="song-masking">
+					<h1 class="page-title">新規投稿</h1>
+					<!--エラーメッセージ-->
+					
 
-		<%= form_for(@song) do |f| %>
-			<div class="song-container">
-				<div class="song-field">
-					<%= f.label :"イメージ画像", class: "field-title" %>
-					<%= f.attachment_field :image, class: "field" %>
-				</div>
+					<!--新規投稿フォーム-->
+					<%= form_for(@song) do |f| %>
+						<div class="song-container">
+							<div class="song-field">
+								<strong><p>イメージ画像</p></strong>
+								<%= f.attachment_field :image, class: "field" %>
+							</div>
 
-				<div class="song-field">
-					<%= f.label :"曲名", class: "field-title" %>
-					<%= f.text_field :title, class: "field-class" %>
-				</div>
+							<div class="song-field">
+								<strong><p>曲名</p></strong>
+								<%= f.text_field :title, class: "field-class" %>
+							</div>
 
-				<div class="song-field">
-					<%= f.label :"アーティスト名", class: "field-title" %>
-					<%= f.text_field :artist_name, class: "field field-class" %>
-				</div>
+							<div class="song-field">
+								<strong><p>アーティスト名</p></strong>
+								<%= f.text_field :artist_name, class: "field field-class" %>
+							</div>
 
-				<div class="song-field">
-					<%= f.label :"本文", class: "field-title" %>
-					<%= f.text_area :body, class: "field area-class" %>
-				</div>
+							<div class="song-field">
+								<strong><p>本文</p></strong>
+								<%= f.text_area :body, class: "field area-class" %>
+							</div>
 
-				<div class="actions field">
-					<%= f.submit "投稿する", class: "btn btn-primary" %>
+							<div class="actions field">
+								<%= f.submit "投稿する", class: "btn btn-primary" %>
+							</div>
+						</div>
+					<% end %>
 				</div>
+				
 			</div>
-		<% end %>
+		</div>
 	</div>
-	<!--新規投稿フォーム-->
+
+	<div class="col-lg-2"></div>
 
 </div>

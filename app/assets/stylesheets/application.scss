@@ -17,6 +17,24 @@
 // @import "bootstrap-sprockets";
 // @import "bootstrap"; 
 
+* {
+    margin: 0;
+    padding: 0; 
+}
+
+.clearfix::after {
+   content: "";
+   display: block;
+   clear: both;
+}
+
+.guide-top {
+    padding-top: 50px;
+}
+
+.guide {
+    padding-top: 10px;
+}
 
 .glyphicon {
     position: relative;
@@ -33,6 +51,22 @@
 .row {
     padding-bottom: 50px;
 }        
+
+.page-title {
+    padding-top: 50px;
+}
+
+//  アバウトページ
+
+.about {
+    margin-top: 40px;
+}
+
+.about-title {
+    padding-bottom: 10px;
+}
+
+
 
 
 // 見出し
@@ -96,10 +130,6 @@ footer {
 
 //  新規会員登録　ログイン
 
-.text-center {
-    padding-top: 50px;
-}
-
 .sign-up, .sign-in {
     padding-bottom: 30px;
 }
@@ -113,6 +143,7 @@ footer {
 }
 
 .background {
+    margin-top: 50px;
     background-color: white;
 }
 
@@ -120,6 +151,7 @@ footer {
 //  新規登録
 
 .signup-box {
+    padding-top: 50px;
     height: 600px;
     border: 2px solid;
     background-image: image-url("notes-blue.png");
@@ -128,6 +160,7 @@ footer {
 }
 
 .masking {
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -138,6 +171,7 @@ footer {
 
 
 .login-box {
+    padding-top: 50px;
     height: 500px;
     border: 2px solid;
     background-image: image-url("notes-rainbow.jpg");
