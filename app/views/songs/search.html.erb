@@ -5,38 +5,37 @@
 	</div>
 
 	<div class="col-lg-9">
-		<h2>検索結果</h2>
-		<% @songs.each do |song| %>
-			<%= link_to song_path(song.id) do %>
-				<div class="card">
-					<div class="card-img-top">
-						<%= attachment_image_tag song, :image, :fill, 100, 60, fallback: "no_image_song.jpg", size: "100x60" %>
-					</div>
-					<div class="card-body">
-						<h3 class="card-title">
+		<div class="song-index-head">
+			<h2>検索結果</h2>
+			<!--投稿検索フォーム-->
+	        <%= form_with(url: search_songs_path, local: true, method: :get, class: "search-form") do |f| %>
+	            <span class="glyphicon glyphicon-search" aria-hidden="true">　</span>
+	            <%= f.text_field :keyword, placeholder: "投稿を検索する。　アーティスト名や投稿の本文でも検索できます。", class: "search-input", size: "80" %>
+	            <%= f.submit "検索", class: "search-btn" %>
+	        <% end %>
+		</div>
+		
+		<div class="song-list">
+			<% @songs.each do |song| %>
+				<div class="song text-center">
+					<%= link_to song_path(song.id) do %>
+						<div class="song-img">
+							<%= attachment_image_tag song, :image, :fill, 200, 120, fallback: "no_image_song.jpg", size: "200x120" %>
+						</div>
+						<h4 class="song-piece" style="margin-top: 15px;">
 							<span class="note">♪</span> <%= song.title %>
-						</h3>
-						<div class="card-title">
-							アーティスト：<%= song.artist_name %>
+						</h4>
+					<% end %>
+						<div class="song-piece">
+							<%= song.artist_name %>
 						</div>
-						<div class="card-text">
-							<%= song.body %>
+						<div class="song-piece">
+							<i class="fas fa-heart" style="font-size: 15px; color: red;" ></i><strong>	<%= song.favorites.count %></strong>
+							<i class="far fa-comment" style="margin-left: 10px;"> <strong>	<%= song.comments.count %></strong></i>
 						</div>
-						<div class="card-footer">
-							<%= song.user.name %>
-							<!--<%=  %>-->
-
-							<!--いいね機能-->
-							<%= render "favorites/favorite_button", song: song %>
-
-							<!--コメント数-->
-							<p>コメント数：<%= song.comments.count %></p>
-							
-						</div>
-					</div>
 				</div>
 			<% end %>
-		<% end %>
+		</div>
 	</div>
 	
 </div>

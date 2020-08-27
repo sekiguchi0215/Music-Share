@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-	before_action :authenticate_user!, except: [:top]
+	before_action :authenticate_user!, except: [:top, :about]
 
 	def index
 		@songs = Song.all
@@ -50,6 +50,10 @@ class SongsController < ApplicationController
 
 	def top
 		@songs = Song.all
+	end
+
+	def about
+		
 	end
 
 	private

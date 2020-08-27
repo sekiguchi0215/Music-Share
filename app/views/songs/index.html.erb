@@ -9,7 +9,7 @@
 			<!--投稿検索フォーム-->
 	        <%= form_with(url: search_songs_path, local: true, method: :get, class: "search-form") do |f| %>
 	            <span class="glyphicon glyphicon-search" aria-hidden="true">　</span>
-	            <%= f.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
+	            <%= f.text_field :keyword, placeholder: "投稿を検索する。　アーティスト名や投稿の本文でも検索できます。", class: "search-input", size: "80" %>
 	            <%= f.submit "検索", class: "search-btn" %>
 	        <% end %>
 		</div>

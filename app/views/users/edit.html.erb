@@ -7,7 +7,7 @@
 
 	<div class="col-lg-6">
 		<% if @user.errors.any? %>
-			<h2><%= @user.errors.count %></h2>
+			<h2><%= @user.errors.count %>errors</h2>
 			<ul>
 				<% @user.errors.full_messages.each do |message| %>
 					<li><%= message %></li>

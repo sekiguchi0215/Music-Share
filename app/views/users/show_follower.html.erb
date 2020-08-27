@@ -6,44 +6,48 @@
 	<!--<%=  %>-->
 	<div class="col-lg-9">
 		<h2>フォロワーリスト</h2>
-		<% @user.followers.each do |user| %>
-			<table class="table">
-				<tr>
-					<td width=15%" class="text-center">
-						<%= link_to user_path(user.id) do %>
-							<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "user-image" %>
-							<h5><%= user.name %></h5>
-						<% end %>
-					</td>
-					<td width="55%">
-						<%= user.introduction %>
-					</td>
-					<td width="20%">
-						<p>
-							<%= link_to "いいねした投稿", favorites_user_path(user) %>
-						</p>
-						<p>
-							<%= link_to followings_user_path(user) do %>
-								フォロー：<%= user.followings.count %>
+		<% if @users.exists? %>
+			<% @user.followers.each do |user| %>
+				<table class="table">
+					<tr>
+						<td width=15%" class="text-center">
+							<%= link_to user_path(user.id) do %>
+								<%= attachment_image_tag user, :profile_image_id, :fill, 100, 100, fallback: "no_image_user.png", size: "100x100", class: "user-image" %>
+								<h5><%= user.name %></h5>
 							<% end %>
-						</p>
-						<p>
-							<%= link_to followers_user_path(@user) do %>
-								フォロワー：<%= user.followers.count %>
+						</td>
+						<td width="55%">
+							<%= user.introduction %>
+						</td>
+						<td width="20%">
+							<p>
+								<%= link_to "いいねした投稿", favorites_user_path(user) %>
+							</p>
+							<p>
+								<%= link_to followings_user_path(user) do %>
+									フォロー：<%= user.followings.count %>
+								<% end %>
+							</p>
+							<p>
+								<%= link_to followers_user_path(user) do %>
+									フォロワー：<%= user.followers.count %>
+								<% end %>
+							</p>
+						</td>
+						<!--フォローボタン-->
+						<td width="10%">
+							<% if user == current_user %>
+								<%= link_to "　マイページ　", user_path(current_user), class: "btn btn-success btn-sm" %>
+							<% else %>
+								<%= render "relationships/follow_button_sm", user: user %>
 							<% end %>
-						</p>
-					</td>
-					<!--フォローボタン-->
-					<td width="10%">
-						<% if user == current_user %>
-							<%= link_to "　マイページ　", user_path(current_user), class: "btn btn-success btn-sm" %>
-						<% else %>
-							<%= render "relationships/follow_button_sm", user: user %>
-						<% end %>
-					</td>
-					<!--フォローボタン-->
-				</tr>
-			</table>
+						</td>
+						<!--フォローボタン-->
+					</tr>
+				</table>
+			<% end %>
+		<% else %>
+			<h5 style="margin: 30px 0 0 30px; ">まだ誰にもフォローされていません。</h5>
 		<% end %>
 	</div>
 </div>
